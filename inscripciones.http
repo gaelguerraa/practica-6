@@ -1,0 +1,52 @@
+@baseUrl = http://localhost:3000
+
+### Consultar las inscripciones iniciales
+GET {{baseUrl}}/inscripciones
+
+### Primera y segunda plaza del horario 1
+POST {{baseUrl}}/inscripciones
+Content-Type: application/json
+
+{
+  "horarioId": 1,
+  "miembroId": 1
+}
+
+###
+POST {{baseUrl}}/inscripciones
+Content-Type: application/json
+
+{
+  "horarioId": 1,
+  "miembroId": 2
+}
+
+### El horario ya esta lleno: 409
+POST {{baseUrl}}/inscripciones
+Content-Type: application/json
+
+{
+  "horarioId": 1,
+  "miembroId": 3
+}
+
+### Miembro duplicado en el mismo horario: 409
+POST {{baseUrl}}/inscripciones
+Content-Type: application/json
+
+{
+  "horarioId": 1,
+  "miembroId": 1
+}
+
+### Cancelar la primera inscripcion
+DELETE {{baseUrl}}/inscripciones/1
+
+### Ahora hay cupo para el miembro 3: 201
+POST {{baseUrl}}/inscripciones
+Content-Type: application/json
+
+{
+  "horarioId": 1,
+  "miembroId": 3
+}
