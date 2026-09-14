@@ -15,12 +15,22 @@ export class MiembroNoEncontradoError extends Error {
 
 export class CupoLlenoError extends Error {
   constructor(horarioId: number, cupoMaximo: number) {
-    super(`El horario ${horarioId} ya tiene ${cupoMaximo} inscripciones confirmadas`);
+    super(
+      `El horario ${horarioId} ya tiene ${cupoMaximo} inscripciones confirmadas`,
+    );
   }
 }
 
 export class InscripcionDuplicadaError extends Error {
   constructor(horarioId: number, miembroId: number) {
-    super(`El miembro ${miembroId} ya esta inscrito en el horario ${horarioId}`);
+    super(
+      `El miembro ${miembroId} ya esta inscrito en el horario ${horarioId}`,
+    );
+  }
+}
+
+export class InscripcionNoEncontradaError extends Error {
+  constructor(inscripcionId: number) {
+    super(`No existe la inscripcion ${inscripcionId}`);
   }
 }
